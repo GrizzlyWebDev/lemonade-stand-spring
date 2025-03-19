@@ -30,14 +30,17 @@ public class LemonadeServiceImpl implements LemonadeService {
 
     @Override
     public LemonadeResponseDto createLemonade(LemonadeRequestDto lemonadeRequestDto) {
+        
         Lemonade lemonadeToSave = new Lemonade();
+
         lemonadeToSave.setLemonJuice(lemonadeRequestDto.getLemonJuice());
         lemonadeToSave.setWater(lemonadeRequestDto.getWater());
         lemonadeToSave.setSugar(lemonadeRequestDto.getSugar());
         lemonadeToSave.setIceCubes(lemonadeRequestDto.getIceCubes());
-
         lemonadeToSave.setPrice(lemonadeToSave.getLemonJuice() * .20 + lemonadeToSave.getWater() * .01 + lemonadeToSave.getSugar() * .15 + lemonadeToSave.getIceCubes() * .05 + .50);
+
         Lemonade newlyCreatedLemonade = lemonadeRepository.saveAndFlush(lemonadeToSave);
+
         return new LemonadeResponseDto(newlyCreatedLemonade.getId(), newlyCreatedLemonade.getPrice());
     }
 

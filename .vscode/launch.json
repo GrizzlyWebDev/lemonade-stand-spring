@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-LemonadestandApplication<com.cooksys-lemonadestand>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.cooksys.lemonadestand.LemonadestandApplication",
+      "projectName": "com.cooksys-lemonadestand",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

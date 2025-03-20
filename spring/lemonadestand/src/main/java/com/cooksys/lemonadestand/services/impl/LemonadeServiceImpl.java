@@ -26,6 +26,11 @@ public class LemonadeServiceImpl implements LemonadeService {
     }
 
     @Override
+    public LemonadeResponseDto getLemonadeById(Long id) {
+        return lemonadeMapper.entityToResponseDto(lemonadeRepository.getReferenceById(id));
+    }
+
+    @Override
     public LemonadeResponseDto createLemonade(LemonadeRequestDto lemonadeRequestDto) {
 
         Lemonade lemonade = lemonadeMapper.requestDtoToEntity(lemonadeRequestDto);

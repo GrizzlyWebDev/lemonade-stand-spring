@@ -33,6 +33,8 @@ public class Lemonade {
     @Column(nullable = false)
     private double price;
 
+    private boolean deleted;
+
     @ManyToOne
     @JoinColumn
     private Order order;

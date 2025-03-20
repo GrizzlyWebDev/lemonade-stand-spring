@@ -1,21 +1,21 @@
 package com.cooksys.lemonadestand.controllers;
 
-import com.cooksys.lemonadestand.entities.Lemonade;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.cooksys.lemonadestand.model.LemonadeRequestDto;
 import com.cooksys.lemonadestand.model.LemonadeResponseDto;
 import com.cooksys.lemonadestand.services.LemonadeService;
 
 import lombok.AllArgsConstructor;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("lemonades")
@@ -35,6 +35,7 @@ public class LemonadeController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public LemonadeResponseDto createLemonade(@RequestBody LemonadeRequestDto lemonadeRequestDto) {
         return lemonadeService.createLemonade(lemonadeRequestDto);
     }

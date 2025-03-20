@@ -1,10 +1,13 @@
 package com.cooksys.lemonadestand.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.cooksys.lemonadestand.entities.Lemonade;
+import com.cooksys.lemonadestand.exceptions.BadRequestException;
+import com.cooksys.lemonadestand.exceptions.NotFoundException;
 import com.cooksys.lemonadestand.mappers.LemonadeMapper;
 import com.cooksys.lemonadestand.model.LemonadeRequestDto;
 import com.cooksys.lemonadestand.model.LemonadeResponseDto;
@@ -27,11 +30,19 @@ public class LemonadeServiceImpl implements LemonadeService {
 
     @Override
     public LemonadeResponseDto getLemonadeById(Long id) {
-        return lemonadeMapper.entityToResponseDto(lemonadeRepository.getReferenceById(id));
+        Optional<Lemonade> optionalLemonade = lemonadeRepository.findById(id);
+        if (optionalLemonade.isEmpty()) {
+            throw new NotFoundException("No lemonade found with id: " + id);
+        }
+        return lemonadeMapper.entityToResponseDto(optionalLemonade.get());
     }
 
     @Override
     public LemonadeResponseDto createLemonade(LemonadeRequestDto lemonadeRequestDto) {
+
+        if (lemonadeRequestDto.getLemonJuice() == null || lemonadeRequestDto.getWater() == null || lemonadeRequestDto.getSugar() == null || lemonadeRequestDto.getIceCubes() == null) {
+            throw new BadRequestException("All fields are required for creating a lemonade.");
+        }
 
         Lemonade lemonade = lemonadeMapper.requestDtoToEntity(lemonadeRequestDto);
         lemonade.setPrice(lemonade.getLemonJuice() * .20 + lemonade.getWater() * .01 + lemonade.getSugar() * .15 + lemonade.getIceCubes() * .05 + .50);

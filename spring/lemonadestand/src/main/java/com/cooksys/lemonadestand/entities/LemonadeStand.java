@@ -26,6 +26,8 @@ public class LemonadeStand {
     @Column(nullable = false, unique = true)
     private String name;
 
+    private boolean deleted;
+
     @OneToMany(mappedBy = "lemonadeStand", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 }

@@ -29,6 +29,8 @@ public class Customer {
     @Column(nullable = false)
     private String phoneNumber;
 
+    private boolean deleted;
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 }

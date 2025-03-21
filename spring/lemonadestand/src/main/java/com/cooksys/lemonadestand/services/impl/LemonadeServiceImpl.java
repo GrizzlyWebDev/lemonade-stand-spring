@@ -14,14 +14,14 @@ import com.cooksys.lemonadestand.model.LemonadeResponseDto;
 import com.cooksys.lemonadestand.repositories.LemonadeRepository;
 import com.cooksys.lemonadestand.services.LemonadeService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LemonadeServiceImpl implements LemonadeService {
 
-    private LemonadeRepository lemonadeRepository;
-    private LemonadeMapper lemonadeMapper;
+    private final LemonadeRepository lemonadeRepository;
+    private final LemonadeMapper lemonadeMapper;
 
     private void setLemonadePrice(Lemonade lemonade) {
         lemonade.setPrice(lemonade.getLemonJuice() * .20 + lemonade.getWater() * .01 + lemonade.getSugar() * .15 + lemonade.getIceCubes() * .05 + .50);
@@ -33,7 +33,8 @@ public class LemonadeServiceImpl implements LemonadeService {
         }
     }
 
-    private Lemonade getLemonadeFromRequest(Long id) {
+    @Override
+    public Lemonade getLemonadeFromRequest(Long id) {
         Optional<Lemonade> optionalLemonade = lemonadeRepository.findByIdAndDeletedFalse(id);
         if (optionalLemonade.isEmpty()) {
             throw new NotFoundException("No lemonade found with id: " + id);

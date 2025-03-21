@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name="order_table")
+@Table(name = "order_table")
 @Entity
 @NoArgsConstructor
 @Getter
@@ -28,6 +28,8 @@ public class Order {
 
     @Column(nullable = false)
     private double total;
+
+    private boolean deleted;
 
     @OneToMany(mappedBy = "order")
     private List<Lemonade> lemonades = new ArrayList<>();

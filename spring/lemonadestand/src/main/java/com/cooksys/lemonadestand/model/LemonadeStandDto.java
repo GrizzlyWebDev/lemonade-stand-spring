@@ -8,4 +8,6 @@ import lombok.NoArgsConstructor;
 public class LemonadeStandDto {
 
     private Long id;
+
+    private String name;
 }

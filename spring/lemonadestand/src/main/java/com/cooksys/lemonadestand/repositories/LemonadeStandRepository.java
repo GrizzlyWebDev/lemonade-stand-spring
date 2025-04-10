@@ -13,5 +13,7 @@ public interface LemonadeStandRepository extends JpaRepository<LemonadeStand, Lo
 
     Optional<LemonadeStand> findByIdAndDeletedFalse(Long id);
 
+    Optional<LemonadeStand> findByNameAndDeletedFalse(String name);
+
     List<LemonadeStand> findAllByDeletedFalse();
 }

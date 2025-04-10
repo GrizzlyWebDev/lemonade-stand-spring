@@ -18,6 +18,8 @@ public interface LemonadeMapper {
 
     LemonadeResponseDto entityToResponseDto(Lemonade lemonade);
 
+    Lemonade lemonadeResponseDtoToEntity(LemonadeResponseDto lemonadeResponseDto);
+
     List<LemonadeResponseDto> entitiesToResponseDtos(List<Lemonade> lemonades);
 
 }

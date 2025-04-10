@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class OrderRequestDto {
 
-    private List<LemonadeDto> lemonades;
+    private List<LemonadeRequestDto> lemonades;
 
-    private CustomerDto customer;
+    private CustomerRequestDto customer;
 
     private LemonadeStandDto lemonadeStand;
 }
